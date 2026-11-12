@@ -1,0 +1,13 @@
+torch==2.3.1
+transformers==4.41.2
+pandas==2.2.2
+huggingface-hub==0.23.2
+ipywidgets
+bitsandbytes
+accelerate
+matplotlib==3.9.0
+numpy==1.26.4
+pandas==2.2.2
+seaborn==0.13.2
+scipy
+nltk
