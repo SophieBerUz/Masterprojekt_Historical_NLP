@@ -292,11 +292,11 @@ for aya23:<br>
 # Results
 We started our analysis with an evaluation of the three best templates on the leo-mistral model using 20 samples per bucket and 100 samples per bucket. <br>
 The following plot compares the performance of the three prompt templates over different time intervals (“buckets”). Template 10 outperforms the other two templates across most buckets, showing more dynamic changes in accuracy. Templates 3 and 9 maintain more consistent but lower accuracy levels, with both templates experiencing minor improvements over time. The notable dip around 1700-1749 could indicate a time-specific challenge for all templates.
-![20samples leo-mistral](figures/leo-mistral/20samples_accuracy_combined.png)
+![20samples leo-mistral](leo-mistral/20samples_accuracy_combined.png)
 *caption: Accuracy for 20 samples on leo-mistral model* <br>
 
 Increasing the sample size from 20 to 100 per bucket
-![100samples leo-mistral](figures/leo-mistral/100samples_accuracy_combined.png)
+![100samples leo-mistral](leo-mistral/100samples_accuracy_combined.png)
 *caption: Accuracy for 100 samples on leo-mistral model* <br>
 results in smoother accuracy trends, with reduced variability between buckets. This suggests that the larger sample size provides a more stable estimate of each template’s performance over time. Template 10 still achieves the highest accuracy overall, but with less dramatic fluctuations, while Templates 3 and 9 maintain steady, lower accuracy levels. This trend implies that Template 10’s effectiveness remains superior, but the increased sample size makes the performance differences across time periods more reliable and less susceptible to noise. <br>
 
@@ -327,11 +327,11 @@ The outputs for the aya model seem more reasonable. In the first example the mod
 ]}
 ```
 To get a better idea of how well each model performed, we started with the accuracy per bucket for leo-mistral: <br>
-![500samples leo-mistral](figures/leo-mistral/500samples_accuracy.png)
+![500samples leo-mistral](leo-mistral/500samples_accuracy.png)
 *caption: Accuracy for 500 samples on leo-mistral model* <br>
 Template 10 consistently shows the highest accuracy across all buckets, starting around 17.5% in the 1600-1649 bucket and gradually increasing to about 27.5% in the 1850-1899 bucket. Template 9 maintains moderate accuracy, consistently outperforming Template 3 but staying below Template 10. The accuracy trend for Template 9 is relatively stable with a gradual increase over time. Template 3 starts with the lowest accuracy among the three templates at just over 7.5% in the 1600-1649 bucket. This visualization suggests that Template 10 has a marked advantage in terms of accuracy across historical time periods. <br>
 Comparing with the aya8B model, we can see some differences: <br>
-![500samples aya8B](figures/aya8B/500samples_accuracy_AYA.png)
+![500samples aya8B](aya8B/500samples_accuracy_AYA.png)
 *caption: Accuracy for 500 samples on aya8B model* <br>
 The accuracy values in this graph are generally higher than in the previous visualization. For instance, Template 10 starts around 30% accuracy here (compared to 17.5% in the previous chart) and reaches around 45%, suggesting this model is more accurate overall. In the previous visualization, Template 10 showed a consistent increase, with a slight drop in the 1700-1749 bucket, then continued upward. Here, Template 10 rises more steadily, peaks in the 1800-1849 bucket, and shows a slight drop in the final bucket. Template 9 also shows a similar trend, with an initial rise followed by a slight decline in the later buckets, indicating possible model performance degradation over time.
 
@@ -339,26 +339,26 @@ In both visualizations, Template 9 performs better than Template 3 but remains b
 However, the gap between Template 3 and Template 9 appears somewhat larger here, indicating that Template 9 performs relatively better in the aya8B model. <br>
 
 In a next step, we did some more detailed evaluations. One analysis contained the standard error for each bucket, which is relativly small for both models but a little bit bigger for aya8B: <br>
-![500samples leo-mistral standardError](figures/leo-mistral/500samples_accuracy_standardError.png)
+![500samples leo-mistral standardError](leo-mistral/500samples_accuracy_standardError.png)
 *caption: Standard Error for 500 samples on leo-mistral model* <br>
-![500samples aya8B standardError](figures/aya8B/500samples_accuracy_standardError_AYA.png)
+![500samples aya8B standardError](aya8B/500samples_accuracy_standardError_AYA.png)
 *caption: Standard Error for 500 samples on aya8B model* <br>
 From the first two visualizations we got that there is an upwards trend of the accuracy over the buckets. To get further insides how much the slope is from 1600 to 1900, the next two visualizations were produced: <br>
-![leo-mistral accuracy per year](figures/leo-mistral/500samples_years_vs_accuracy_withSlope.png)
+![leo-mistral accuracy per year](leo-mistral/500samples_years_vs_accuracy_withSlope.png)
 *caption: Accuracy per year with slop and accuracy per sample as points in background for 500 samples on leo-mistral model* <br>
 The visualization for the leo-mistral model shows for each template a slight positive trend in accuracy over time, though the improvements are modest. The slope values (0.02 for Template 3 and 0.03 for Templates 9 and 10) reflect minor increases in accuracy as years progress. Template 10 has consistently higher accuracy across samples and time periods compared to Templates 3 and 9. This is evident from the elevated position of the red trend line in Template 10’s plot, as well as from the wider spread of higher-accuracy points.
-![aya model accuracy per year](figures/aya8B/500samples_years_vs_accuracy_withSlope_AYA.png)
+![aya model accuracy per year](aya8B/500samples_years_vs_accuracy_withSlope_AYA.png)
 *caption: Accuracy per year with slop and accuracy per sample as points in background for 500 samples on aya23 8B model* <br>
 In the aya model, Template 3 and Template 9 remain at 0.03, while Template 10 has increased significantly to 0.09, suggesting that this model improves Template 10's accuracy over time more effectively than the leo-mistral model. The spread and variability of individual sample accuracies are generally similar in both visualizations. However, Template 10 in the aya model shows a higher concentration of samples achieving moderate to high accuracy. <br>
 
 Lastly, we do not only want to know how the complete poems perform over time, but also the performance on token level per year. Therefore, we counted the number of correct predictions of each year and divided it through the number of tokens in the specific year. Applying it to the data of both models, results in the following two visualizations: <br>
 
-![leo-mistral accuracy per token](figures/leo-mistral/500samples_accuracy_perToken.png)
+![leo-mistral accuracy per token](leo-mistral/500samples_accuracy_perToken.png)
 *caption: Accuracy per token over the years for 500 samples on leo-mistral model* <br>
 For the above seen template 3, low accuracy values are observed for most tokens across the years, with occasional small peaks, particularly around the 1750s and 1800s. The accuracy per token remains mostly under 10% throughout the entire period, with few noticeable spikes. Similar to template 3, template 9 also shows generally low accuracy, with a few sporadic peaks in specific years, notably a large spike around the early 1800s. But This spike appears to reach around 60% accuracy for tokens in that particular year, which is a significant outlier compared to the rest of the timeline. In comparison, template 10 displays a more variable trend in accuracy per token compared to the other two templates. There are several noticeable peaks, especially early in the timeline (pre-1700s) and again in the late 1800s, with accuracy values reaching around 30–40% during these periods. Additionally, A gradual increase in token accuracy toward the late 1800s is visible, suggesting that template 10 may be better suited for more recent data within the dataset. <br>
 
 If we compare it with the results from the aya23 8B model, we can see some differences, but one similar observation.
-![aya model accuracy per token](figures/aya8B/500samples_accuracy_token_aya.png)
+![aya model accuracy per token](aya8B/500samples_accuracy_token_aya.png)
 *caption: Accuracy per token over the years for 500 samples on aya23 8B model* <br>
 Starting with template 3, the spike near the 1800s is much more pronounced in this model than in the leo-mistral, reaching about 70% accuracy per token, which is a major outlier in this plot. The rest of the years fluctuate at lower accuracy levels, similar to the previous visualization. Looking at template 9 and 10 we have higher accuarcy values over time, especially a clearer upward trend in accuracy towards the 1800s to 1900s. The peak near the 1800s is also here very clearly visible. <br>
 
